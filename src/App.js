@@ -1,16 +1,12 @@
 import { render } from 'react-dom';
 import React from 'react';
-import { base as button, primary as buttonPrimary } from './styles/button';
-import { lead as paragraphLead } from './styles/typography';
+import Paragraph from './Paragraph';
+import Button from './Button';
 
 const App = () => (
   <div>
-    <p className={paragraphLead}>
-      Lorem ipsum dolor sit amet
-    </p>
-    <button className={`${button} ${buttonPrimary}`}>
-      Button
-    </button>
+    <Paragraph />
+    <Button />
   </div>
 );
 

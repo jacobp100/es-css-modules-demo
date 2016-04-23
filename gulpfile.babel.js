@@ -1,28 +1,20 @@
 import gulp from 'gulp';
 import del from 'del';
-import { getStyleExports, cssModulesWithStyleExports } from 'gulp-es6-css-modules';
-import * as p from 'path';
+import path from 'path';
+import esCssModules from 'gulp-es-css-modules';
 
-const styleImportsDir = p.join(__dirname, 'src/styles');
-const styleImportsFiles = p.join(styleImportsDir, '/**/*.js');
-
-gulp.task('clean', () => (
+gulp.task('clean', () => {
   del([
-    styleImportsFiles,
-    'dist/**/*.css',
-  ])
-));
+    'dist',
+    'src/styles',
+  ]);
+});
 
-gulp.task('generate-style-exports', ['clean'], () => (
-  gulp.src(['src/**/*.js', '!src/styles'])
-    .pipe(getStyleExports(styleImportsFiles))
-    .pipe(gulp.dest('src'))
-));
-
-gulp.task('css', ['generate-style-exports'], () => (
+gulp.task('default', ['clean'], () => {
   gulp.src('styles/**/*.css')
-    .pipe(cssModulesWithStyleExports(styleImportsDir, { warnOnUnused: true }))
-    .pipe(gulp.dest('dist'))
-));
-
-gulp.task('build', ['css']);
+    .pipe(esCssModules({
+      entry: path.join(__dirname, 'src/App.js'),
+      moduleExportsDirectory: path.join(__dirname, 'src/styles'),
+    }))
+    .pipe(gulp.dest('dist'));
+});
