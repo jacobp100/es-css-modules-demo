@@ -13,7 +13,7 @@ gulp.task('clean', () => {
 gulp.task('default', ['clean'], () => {
   gulp.src('styles/**/*.css')
     .pipe(esCssModules({
-      entry: path.join(__dirname, 'src/App.js'),
+      jsEntry: path.join(__dirname, 'src/App.js'),
       moduleExportsDirectory: path.join(__dirname, 'src/styles'),
     }))
     .pipe(gulp.dest('dist'));
