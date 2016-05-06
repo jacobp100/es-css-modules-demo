@@ -15,9 +15,11 @@
     "eslint": "^2.7.0",
     "eslint-config-airbnb": "^6.2.0",
     "eslint-plugin-react": "^4.3.0",
-    "gulp": "^3.9.1"
+    "gulp": "^3.9.1",
+    "postcss-modules-es": "^1.0.0"
   },
   "dependencies": {
+    "gulp-postcss": "^6.1.1",
     "react": "^0.14.8",
     "react-dom": "^0.14.8"
   },

@@ -1,7 +1,7 @@
 import gulp from 'gulp';
 import del from 'del';
-import path from 'path';
-import esCssModules from 'gulp-es-css-modules';
+import postcss from 'gulp-postcss';
+import modulesEs from 'postcss-modules-es';
 
 gulp.task('clean', () => {
   del([
@@ -12,9 +12,11 @@ gulp.task('clean', () => {
 
 gulp.task('default', ['clean'], () => {
   gulp.src('styles/**/*.css')
-    .pipe(esCssModules({
-      jsEntry: path.join(__dirname, 'src/App.js'),
-      moduleExportsDirectory: path.join(__dirname, 'src/styles'),
-    }))
+    .pipe(postcss([
+      modulesEs({
+        moduleExportDirectory: 'styles',
+        jsFiles: 'src/App.js',
+      }),
+    ]))
     .pipe(gulp.dest('dist'));
 });
