@@ -14,7 +14,6 @@ gulp.task('default', ['clean'], () => {
   gulp.src('styles/**/*.css')
     .pipe(postcss([
       modulesEs({
-        moduleExportDirectory: 'styles',
         jsFiles: 'src/App.js',
       }),
     ]))
