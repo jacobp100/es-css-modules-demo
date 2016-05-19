@@ -1,7 +1,7 @@
 import gulp from 'gulp';
 import del from 'del';
 import postcss from 'gulp-postcss';
-import modulesEs from 'postcss-modules-es';
+import esCssModules from 'es-css-modules';
 
 gulp.task('clean', () => {
   del([
@@ -13,7 +13,7 @@ gulp.task('clean', () => {
 gulp.task('default', ['clean'], () => {
   gulp.src('styles/**/*.css')
     .pipe(postcss([
-      modulesEs({
+      esCssModules({
         jsFiles: 'src/App.js',
       }),
     ]))
